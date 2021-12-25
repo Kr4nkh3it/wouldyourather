@@ -73,7 +73,7 @@
     </head>
     <body>
     <fieldset>
-        <h2 class="center">Would You Rather?</h2>
+        <h2 class="center">{{ question.question_text }}</h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>
 {% endif %}
         <div id="container">
