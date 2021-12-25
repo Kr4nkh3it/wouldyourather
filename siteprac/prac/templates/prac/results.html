@@ -1,0 +1,67 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'prac/resultsstyle.css' %}">
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            footer {
+                position: relative;
+               
+                
+            }
+        
+            p.copyright {
+                position: absolute;
+                width: 100%;
+                
+                line-height: 40px;
+                font-size: 0.7em;
+                text-align: center;
+                bottom:0;
+            }
+        </style>
+    
+        <title>WOULD YOU RATHER</title>
+        <style type="text/css">
+            body
+            {
+                padding: 0;
+                margin: 0;
+                background: black;
+            }
+        </style>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       
+    </head>
+    <body>
+        <a href="{% url 'prac:choose' random_question.id %}">Next Question</a>
+        <div id="container">
+
+        <div class="row no-gutters">
+
+            <div class="col-md-6">
+               
+
+                <div class="leftside no-gutters d-flex justify-content-center align-items-center">
+                        <h2>{{ results1 }}</h2>
+                </div>
+                
+            </div>
+            
+            <div class="col-md-6 no-gutters">
+
+                <div class="rightside d-flex justify-content-center align-items-center">
+                        <h2>{{ results2 }}</h2>
+                        
+                        
+                     
+                </div>
+           
+            </div>
+        </div>
+    </body>
+    <footer>
+        <p class="copyright">©Copyright 2021 All Rights Reserved Front-End @Unexpectedvr, Back-End @Binaryexploit on instagram</p>
+    </footer>
+</html> 
