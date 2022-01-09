@@ -37,7 +37,7 @@ def results(request, question_id):
         choice_list.append(choice)
     while random_question == question:
         random_question = random.choice(question_list)
-    results1 = str(int((choice_list[0].results / (choice_list[0].results + choice_list[1].results)) * 100))+"%"
-    results2 = str(int((choice_list[1].results / (choice_list[0].results + choice_list[1].results)) * 100))+"%"
+    results1 = str(int(round((choice_list[0].results / (choice_list[0].results + choice_list[1].results)) * 100)))+"%"
+    results2 = str(int(round((choice_list[1].results / (choice_list[0].results + choice_list[1].results)) * 100)))+"%"
     return render(request, 'prac/results.html',{'question':question,'random_question':random_question,'results1':results1,'results2':results2})
 

@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.utils import timezone
-from .models import Question
+from .models import Question, Choice
+from .views import results
 import datetime
 
 # Create your tests here.
