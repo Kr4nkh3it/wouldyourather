@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'prac/indexstyle.css' %}">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WOULD YOU RATHER</title>
+        
+    </head>
+    
+    <body>
+        <marquee behavior="scroll" direction="left"><h1>WELCOME TO WOULD YOU RATHER!</h1></marquee>
+        <a href="{% url 'prac:choose' question.id %}" class="neon-button">PRESS TO BEGIN</a>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'prac/choosestyle.css' %}">
+<!DOCTYPE html>
+<html>
+<form action="{% url 'prac:vote' question.id %}" method="post">
+{% csrf_token %}
+    <head>
+        <style>
+            footer {
+                position: relative;
+               
+                
+            }
+        
+            p.copyright {
+                position: absolute;
+                width: 100%;
+                
+                line-height: 40px;
+                font-size: 0.7em;
+                text-align: center;
+                bottom:0;
+            }
+        </style>
+    
+        <title>WOULD YOU RATHER</title>
+        <style type="text/css">
+            body
+            {
+                padding: 0;
+                margin: 0;
+                background: black;
+            }
+            h1
+            {
+                color: black;
+                font-size: 5em;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                font-family: 'calibri';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            h2
+            {
+                color: black;
+                margin: 0;
+                text-align: center;
+                font-family: 'calibri';
+            }
+        </style>
+        
+
+        <style> 
+            button[type=submit], button[type=submit], button[type=reset] {
+              
+              background-color: transparent;  
+              border: none;
+              color: black;
+              padding: 100px 100px;
+              text-decoration: none;
+              margin: 10px 10px;
+              cursor: pointer;
+              font-size: 2.5em;
+            }
+            </style>
+            <style> 
+                .button { 
+                height: 50px; 
+                width: 100px; 
+                } 
+                </style> 
+           
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       
+    </head>
+    <body>
+    <fieldset>
+        <h2>{{ question.question_text }}</h2>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+        <div id="container">
+
+        <div class="row no-gutters">
+
+            <div class="col-md-6">
+               
+
+                <div class="leftside no-gutters d-flex justify-content-center align-items-center">
+                        <button type="submit" name="choice" value="{{ choice1.id}}" id="choice1">{{ choice1.choice }}?</button>
+                </div>
+                
+            </div>
+            
+            <div class="col-md-6 no-gutters">
+
+                <div class="rightside d-flex justify-content-center align-items-center">
+                        <button type="submit" name="choice" value="{{ choice2.id }}" id="choice2">{{ choice2.choice }}?</button>
+                        
+                        
+                     
+                </div>
+           
+            </div>
+        </div>
+        <h1>OR</h1>
+</fieldset>
+    </body>
+    <footer>
+        <p class="copyright">©Copyright 2021 All Rights Reserved Front-End @Unexpectedvr, Back-End @Binaryexploit on instagram</p>
+    </footer>
+</form>
+</html> 
