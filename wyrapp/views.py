@@ -7,15 +7,16 @@ import random
 # Create your views here.
 
 def index(request):
-    question_list = Question.objects.all()
-    return render(request,'wyrapp/index.html',{'question':random.choice(question_list)})
+    questionid=0
+    if len(Question.objects.all()) >= 1:
+        question = random.choice(Question.objects.all())
+        questionid=question.id
+    question = get_object_or_404(Question,pk=questionid)
+    return render(request,'wyrapp/index.html',{'question':question})
 
 def choose(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    choice_list = []
-    for choice in question.choice_set.all():
-        choice_list.append(choice)
-    return render(request,'wyrapp/choose.html',{'question':question,'choice1':choice_list[0],'choice2':choice_list[1]})
+    return render(request,'wyrapp/choose.html',{'question':question,'choice0':question.choice_set.all()[0],'choice1':question.choice_set.all()[1]})
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -29,15 +30,17 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('wyrapp:results',args=(question.id,)))
     
 def results(request, question_id):
-    question_list = Question.objects.all()
-    random_question = random.choice(question_list)
     question = get_object_or_404(Question,pk=question_id)
-    choice_list = []
-    for choice in question.choice_set.all():
-        choice_list.append(choice)
-    while random_question == question:
-        random_question = random.choice(question_list)
-    results1 = str(int(round((choice_list[0].results / (choice_list[0].results + choice_list[1].results)) * 100)))+"%"
-    results2 = str(int(round((choice_list[1].results / (choice_list[0].results + choice_list[1].results)) * 100)))+"%"
-    return render(request, 'wyrapp/results.html',{'question':question,'random_question':random_question,'results1':results1,'results2':results2})
+    next_question = question
+    questionid=0
+    results0 = round((question.choice_set.all()[0].results/(question.choice_set.all()[0].results+question.choice_set.all()[1].results))*100)
+    results1 = round((question.choice_set.all()[1].results/(question.choice_set.all()[1].results+question.choice_set.all()[0].results))*100)
+    if len(Question.objects.all()) > 1:
+        while next_question == question:
+            next_question = random.choice(Question.objects.all())
+            questionid=next_question.id
+        next_question = Question.objects.get(pk=questionid)
+    else:
+        return render(request, 'wyrapp/results.html',{'question':question,'next_question':question,'results0':results0,'results1':results1,'error_message':'There are no more questions'})
+    return render(request, 'wyrapp/results.html',{'question':question,'next_question':next_question,'results0':results0,'results1':results1})
 

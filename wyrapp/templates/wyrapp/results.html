@@ -46,9 +46,9 @@
        
     </head>
     <body>
-	<p class="link">
-        <a class="link" href="{% url 'wyrapp:choose' random_question.id %}">Next Question</a>
-        </p>
+	{% if error_message %}<p class="link">{{error_message}}</p>
+	{% else %}<p class="link"><a class="link" href="{% url 'wyrapp:choose' next_question.id %}">Next Question</a></p>
+	{% endif %}
 	<div id="container">
 
         <div class="row no-gutters">
@@ -57,7 +57,7 @@
                
 
                 <div class="leftside no-gutters d-flex justify-content-center align-items-center">
-                        <h2>{{ results1 }}</h2>
+                        <h2>{{results0}}%</h2>
                 </div>
                 
             </div>
@@ -65,7 +65,7 @@
             <div class="col-md-6 no-gutters">
 
                 <div class="rightside d-flex justify-content-center align-items-center">
-                        <h2>{{ results2 }}</h2>
+                        <h2>{{results1}}%</h2>
                         
                         
                      
